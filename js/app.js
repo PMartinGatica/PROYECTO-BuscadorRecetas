@@ -1,10 +1,16 @@
 function iniciarApp() {
     obtenerCategorias();
-
-    const selectCategorias = document.querySelector('#categorias');
-    selectCategorias.addEventListener('change' , seleccionarCategorias);
-
+    
     const resultado = document.querySelector('#resultado');
+    const selectCategorias = document.querySelector('#categorias');
+    if (selectCategorias) {
+        selectCategorias.addEventListener('change' , seleccionarCategorias);
+        obtenerCategorias();
+    }
+    const favoritosDiv = document.querySelector('.favoritos');
+    if (favoritosDiv) {
+        obtenerFavoritos();
+    }
     const modal = new bootstrap.Modal('#modal',{});
 
     function obtenerCategorias() {
@@ -57,15 +63,15 @@ function iniciarApp() {
 
             const recetaImg = document.createElement('img');
             recetaImg.classList.add('card-img-top');
-            recetaImg.alt = `Imagen de la receta ${strMeal}`;
-            recetaImg.src =strMealThumb
+            recetaImg.alt = `Imagen de la receta ${strMeal ?? receta.titulo}`;
+            recetaImg.src =strMealThumb ?? receta.img ;
 
             const recetaCardBody = document.createElement('div');
             recetaCardBody.classList.add('card-body');
 
             const recetaHeading = document.createElement('h3');
             recetaHeading.classList.add('card-title','h3');
-            recetaHeading.textContent =strMeal;
+            recetaHeading.textContent =strMeal ?? receta.titulo;
 
             const recetaButton = document.createElement('button');
             recetaButton.classList.add('btn','btn-danger','w-100');
@@ -73,7 +79,7 @@ function iniciarApp() {
             // recetaButton.dataset.bsTarget = "#modal";
             // recetaButton.dataset.bsToggle = "modal";
             recetaButton.onclick = function ()  {
-                seleccionarReceta(idMeal);
+                seleccionarReceta(idMeal ?? receta.id);
             }
 
             //inyectar en HTML
@@ -88,7 +94,7 @@ function iniciarApp() {
 
             resultado.appendChild(recetaContenedor);
 
-            console.log(recetaImg)
+            //console.log(recetaImg)
             // console.log(recetaCard)
         });
     }
@@ -200,6 +206,17 @@ function iniciarApp() {
         const toast = new bootstrap.Toast(toastDiv);
         toastBody.textContent = mensaje;
         toast.show();
+    }
+    function obtenerFavoritos() {
+        const favoritos = JSON.parse(localStorage.getItem('favoritos')) ?? [];
+        if (favoritos.length){
+            mostrarRecetas(favoritos);
+            return
+        } 
+        const noFavoritos = document.createElement('p');
+        noFavoritos.textContent ='No Bookmarks';
+        noFavoritos.classList.add('fs-4','text-center','font-bold','mt-5');
+        resultado.appendChild(noFavoritos);
     }
     
     function limpiarHTML(selector){
