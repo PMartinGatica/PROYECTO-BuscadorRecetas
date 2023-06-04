@@ -75,7 +75,7 @@ function iniciarApp() {
 
             const recetaButton = document.createElement('button');
             recetaButton.classList.add('btn','btn-danger','w-100');
-            recetaButton.textContent = 'Ver Receta';
+            recetaButton.textContent = 'See Recipe';
             // recetaButton.dataset.bsTarget = "#modal";
             // recetaButton.dataset.bsToggle = "modal";
             recetaButton.onclick = function ()  {

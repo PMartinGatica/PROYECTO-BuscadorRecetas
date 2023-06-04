@@ -1,3 +1,24 @@
+body {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/syd-wachs-epqNIYI6S7E-unsplash.jpg');
+  background-size: cover;
+  
+  /* animation: fadeIn 5s infinite; */
+  color :white
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+
 /* Estilos de la barra de navegación */
 .navbar {
     animation: fadeInDown 1s;
