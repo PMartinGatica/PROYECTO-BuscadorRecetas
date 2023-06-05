@@ -46,8 +46,8 @@ function iniciarApp() {
         limpiarHTML(resultado);
 
         const heading = document.createElement('h2');
-        heading.classList.add('text-center','text-black','my-5');
-        heading.textContent = recetas.length ? 'Resultados' : 'No hay resultados';
+        heading.classList.add('text-center','text-white','my-5');
+        heading.textContent = recetas.length ? 'Results' : 'No results';
         resultado.appendChild(heading);
 
         //Iterar resultados
