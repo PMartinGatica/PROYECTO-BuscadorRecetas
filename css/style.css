@@ -3,8 +3,12 @@ body {
   background-size: cover;
   
   /* animation: fadeIn 5s infinite; */
-  color :white
+  color :black
   
+}
+
+h2{
+  color: white;
 }
 
 @keyframes fadeIn {
